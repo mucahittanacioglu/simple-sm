@@ -78,7 +78,8 @@ export function get_comments_on_topic(topic_name:string): Array<Comment> {
 ```
 
 
-##Classes
+**Classes**
+
 We can add more specific data here like date,view count,maybe donation box etc.
 ```javascript 
 @nearBindgen
