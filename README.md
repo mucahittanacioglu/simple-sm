@@ -8,19 +8,21 @@ I used context from nearSDK for attached deposit and id of people.
 [Loom Video Link](https://www.loom.com/embed/c4a93dc039f74692bb737f7dcc1ec5a6)
 
 ##Commands
+
 Single command was enough for me **"build:release:deploy": "asb && near dev-deploy ./build/release/simple.wasm"**.You can just write **yarn build:release:deploy** and its ready on dev account.
 Here some interactions
 ```javascript
 export CONTRACT_F=dev-blabla
 export CONTRACT_S=someone.testnet
 
-near view $CONTRACT_F get_topics**
+near view $CONTRACT_F get_topics
 near call $CONTRACT_F create_topic '{"name":"testing"}' --accountId $CONTRACT_F
 near call $CONTRACT_F add_comment_to_topic '{"topic_name":"testing","comment":"My first comment from dev-blabla"}' --accountId $CONTRACT_F
 near call $CONTRACT_F get_comments_on_topic '{"topic_name":"testing"}' --accountId $CONTRACT_S
 ```
 
 ##Functions
+
 **a-) get_topics**
 Function that returns last TOPIC_VIEW_LIMIT topics.
 ```javascript 
