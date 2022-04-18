@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Start with a basic project",
   "scripts": {
-    "build:release:deploy": "asb && near dev-deploy ./build/release/simple.wasm",
+    "build:release:deploy": "asb && near dev-deploy ./build/release/simple.wasm"
   },
   "keywords": [],
   "author": "hello@near.org",

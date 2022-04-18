@@ -26,4 +26,5 @@ export class Comment{
   }
 }
 
+// variable holds topics and comments within
 export const topics = new PersistentVector<Topic>("t")

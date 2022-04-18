@@ -1,10 +1,26 @@
 Here I tried to simulate simple social media.I have used [near-starter-sdk](https://github.com/Learn-NEAR/starter--near-sdk-as) project as template.
-You can create topic and people can comment on that.
+You can create topic and people can comment on that it is basic structure but can be extendable such as adding like,emotion,even multimedia if storing is not problem.
 I used PersistentVector for storing topics and comments.
 Each topic has its comment array and there is one global topic array.
 I used context from nearSDK for attached deposit and id of people.
 
-**Commands**
+
+[Loom Video Link](https://www.loom.com/embed/c4a93dc039f74692bb737f7dcc1ec5a6)
+
+##Commands
+Single command was enough for me **"build:release:deploy": "asb && near dev-deploy ./build/release/simple.wasm"**.You can just write **yarn build:release:deploy** and its ready on dev account.
+Here some interactions
+```javascript
+export CONTRACT_F=dev-blabla
+export CONTRACT_S=someone.testnet
+
+near view $CONTRACT_F get_topics**
+near call $CONTRACT_F create_topic '{"name":"testing"}' --accountId $CONTRACT_F
+near call $CONTRACT_F add_comment_to_topic '{"topic_name":"testing","comment":"My first comment from dev-blabla"}' --accountId $CONTRACT_F
+near call $CONTRACT_F get_comments_on_topic '{"topic_name":"testing"}' --accountId $CONTRACT_S
+```
+
+##Functions
 **a-) get_topics**
 Function that returns last TOPIC_VIEW_LIMIT topics.
 ```javascript 
@@ -58,3 +74,33 @@ export function get_comments_on_topic(topic_name:string): Array<Comment> {
   return result
 }
 ```
+
+
+##Classes
+We can add more specific data here like date,view count,maybe donation box etc.
+```javascript 
+@nearBindgen
+export class Topic{
+  name:string
+  comments:PersistentVector<Comment>
+  is_premium:boolean
+  constructor(t_name:string){
+    this.name = t_name
+    this.comments = new PersistentVector<Comment>("c")
+    this.is_premium = context.attachedDeposit >= ONE_NEAR
+  }
+  add_comment(comment:Comment): void {
+    this.comments.push(comment)
+  }
+}
+
+@nearBindgen
+export class Comment{
+  user:string
+  comment:string
+  constructor(account:string, comment_:string){
+    this.user = account
+    this.comment = comment_
+  }
+}
+``` 
