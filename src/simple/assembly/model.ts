@@ -8,7 +8,7 @@ export class Topic{
   is_premium:boolean
   constructor(t_name:string){
     this.name = t_name
-    this.comments = new PersistentVector<Comment>("c")
+    this.comments = new PersistentVector<Comment>("c"+t_name)
     this.is_premium = context.attachedDeposit >= ONE_NEAR
   }
   add_comment(comment:Comment): void {
