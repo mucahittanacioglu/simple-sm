@@ -20,7 +20,7 @@ near call $CONTRACT_F create_topic '{"name":"testing"}' --accountId $CONTRACT_F
 near call $CONTRACT_F add_comment_to_topic '{"topic_name":"testing","comment":"My first comment from dev-blabla"}' --accountId $CONTRACT_F
 near call $CONTRACT_F get_comments_on_topic '{"topic_name":"testing"}' --accountId $CONTRACT_S
 ```
-
+There is also shell scripts for each function, scripts are staight forward and interactive.
 **Functions**
 
 **a-) get_topics**
